@@ -1,7 +1,7 @@
 import { TaskStatus } from '../task.entity';
 import {
   Matches,
-  IsIn,
+  IsEnum,
   MinLength,
   IsNotEmpty,
   IsString,
@@ -33,7 +33,8 @@ export class UpdateTaskDto {
 
   @IsString()
   @IsOptional()
-  @IsIn([TaskStatus.IN_PROGRESS, TaskStatus.PENDING, TaskStatus.DONE])
+  @IsEnum(TaskStatus) 
+ // @IsIn([TaskStatus.IN_PROGRESS, TaskStatus.PENDING, TaskStatus.DONE])
   // @Matches(/^[A-Z]+$/, { message: 'Status must be in uppercase' })
   @Matches(/^[A-Z]+$/, {
     message: (args) => `Status '${args.value}' must be in uppercase`,
